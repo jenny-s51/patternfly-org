@@ -6,11 +6,20 @@ import {
   Th,
   Tr,
   Tbody,
-  Td
+  Td,
+  ExpandableRowContent
 } from "@patternfly/react-table";
-import releaseNotes from "release-notes-data.js";
+import { releaseNotes } from "./release-notes-data.js";
 
 export const ReleaseNotesTable = () => {
+  const onCollapse = () => {};
+
+  // need to build a toolbar which allows for string searching across components, descriptions, and details
+  // toolbar should also have checkboxes or toggles to filter based on repo & fixed by codemods
+
+  // the components column should be sorted (maybe sortable)
+  // expand/collapse not yet working.
+
   return (
     <React.Fragment>
       <Table
@@ -35,23 +44,23 @@ export const ReleaseNotesTable = () => {
                     row.details
                       ? {
                         rowIndex,
-                        isExpanded: row.isOpen,
-                        onToggle: this.onCollapse,
-                        expandId: `release-notes-expandable-toggle-${this.props.prefix}`
+                        isExpanded: true,
+                        onToggle: onCollapse,
+                        expandId: `release-notes-expandable-toggle-${row.pullRequestURL}`
                       }
                       : undefined
                   }
                 />
-                <Td dataLabel="Component">{row.cells[0]}</Td>
-                <Td dataLabel="Repo">{row.cells[1]}</Td>
-                <Td dataLabel="Description">{row.cells[2]}</Td>
-                <Td dataLabel="PR link">{row.cells[3]}</Td>
-                <Td dataLabel="Fixed with code mod">{row.cells[4]}</Td>
+                <Td dataLabel="Component">{row.component}</Td>
+                <Td dataLabel="Repo">{row.repo}</Td>
+                <Td dataLabel="Description">{row.description}</Td>
+                <Td dataLabel="PR link"><a target="_blank" href={row.pullRequestURL}>#{row.pullRequestURL.slice(-4)}</a></Td>
+                <Td dataLabel="Fixed with code mod">{row.fixedWithCodeMod ? "Yes" : "No"}</Td>
               </Tr>
               {row.details ? (
-                <Tr isExpanded={row.isOpen}>
+                <Tr isExpanded={true}>
                   <Td />
-                  <Td dataLabel="Details" colSpan={5}>{row.details}</Td>
+                  <Td dataLabel="Details" colSpan={4}><ExpandableRowContent>{row.details}</ExpandableRowContent></Td>
                 </Tr>
               ) : null}
             </Tbody>

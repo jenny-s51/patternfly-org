@@ -1,7 +1,7 @@
 import React from "react";
-import { CodeBlock, CodeBlockCode, TextContent, Text, TextList, TextListItem } from '@patternfly/react-core';
+import { CodeBlock, CodeBlockCode, TextContent, Text, TextList, TextListItem, TextVariants } from '@patternfly/react-core';
 
-export releaseNotes = [
+export const releaseNotes = [
   {
     component: "Card",
     description: "Updates design for selectable and clickable cards",
@@ -24,7 +24,7 @@ export releaseNotes = [
   , {
     component: "Card",
     description: "Deprecate various props",
-    pullRequestURL: "https://github.com/patternfly/patternfly/pull/5363",
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/9092",
     details: (
       <TextContent>
         <Text component={TextVariants.p}>The following props have been deprecated on card:</Text>
@@ -56,5 +56,94 @@ export releaseNotes = [
     ),
     repo: "react",
     fixedWithCodeMod: true
+  }, {
+    component: "Card",
+    description: "Removed the deprecated isHoverable prop from Card",
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8196",
+    repo: "react",
+    fixedWithCodeMod: true,
+    details:(
+      <TextContent>
+        <Text component={TextVariants.p}>Code mods will make the following updates.</Text>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<Card isHoverable />`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<Card  />`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    )
+  }, {
+    component: "Card",
+    description: "Reordered onSelectableInputChange event params",
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8752",
+    repo: "react",
+    fixedWithCodeMod: true,
+    details:(
+      <TextContent>
+        <Text component={TextVariants.p}>Code mods will make the following updates.</Text>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<Card onSelectableInputChange={(id) => handler(id)} />
+const handler1 = (id) => {};
+<Card onSelectableInputChange={handler1}>
+function handler2(id) {};
+<Card onSelectableInputChange={handler2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<Card onSelectableInputChange={(_event, id) => handler(id)} />
+const handler1 = (_event, id) => {};
+<Card onSelectableInputChange={handler1}>
+function handler2(_event, id) {};
+<Card onSelectableInputChange={handler2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    )
+  }, {
+    component: "Card",
+    description: "The internal default value of the component prop has been changed from 'article' to 'div'.",
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8601",
+    repo: "react",
+    fixedWithCodeMod: false
+  }, {
+    component: "Card",
+    description: "CardHeaderMain and CardActions are no longer exported from PatternFly, and are instead rendered internally within the CardHeader sub-component. Any CardHeaderMain content and CardActions content or props should be passed directly to CardHeader instead.",
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8759",
+    repo: "react",
+    fixedWithCodeMod: true,
+    details: (
+      <TextContent>
+        <Text component={TextVariants.p}>Code mods will make the following updates.</Text>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<CardHeader>
+  <CardHeaderMain>Header content</CardHeaderMain>
+  <CardActions className="test" hasNoOffset><Button>Card action</Button></CardActions>
+</CardHeader>`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<CardHeader actions={{ actions: <><Button>Card action</Button></>, hasNoOffset: true, className: "test"}} >
+  Header content
+  
+</CardHeader>`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    )
   }
 ];
