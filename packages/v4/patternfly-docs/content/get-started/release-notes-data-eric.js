@@ -293,5 +293,197 @@ const srcPath = {xs: 'file/path'};
     ),
     repo: "react",
     fixedWithCodeMod: true
+  }, {
+    component: "Calendar month",
+    description: (<>Updated callback props to include the <code class='ws-code'>event</code> parameter.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8753",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.p}>The <code class='ws-code'>onChange</code> and <code class='ws-code'>onMonthChange</code> props now take <code class='ws-code'>event</code> as the first parameter. Selectors may need to be updated.</Text>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<CalendarMonth onChange={(date) => handler(date)} onMonthChange={(newDate) => handler(newDate)} />
+<CalendarMonth onMonthChange={(newDate, event) => handler(newDate, event)} />
+const changeHandler1 = (date) => {};
+const handler1 = (newDate, event) => {};
+<CalendarMonth onChange={changeHandler1} onMonthChange={handler1}>
+function changeHandler2(date) {};
+function handler2(newDate, event) {};
+<CalendarMonth onChange={changeHandler2} onMonthChange={handler2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<CalendarMonth onChange={(_event, date) => handler(date)} onMonthChange={(_event, newDate) => handler(newDate)} />
+<CalendarMonth onMonthChange={(event, newDate) => handler(newDate, event)} />
+const changeHandler1 = (_event, date) => {};
+const handler1 = (_event, newDate) => {};
+<CalendarMonth onMonthChange={handler1}>
+function changeHandler2(_event, date) {};
+function handler2(_event, newDate) {};
+<CalendarMonth onChange={changeHandler2} onMonthChange={handler2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Charts",
+    description: (<>Removed the <code class='ws-code'>getResizeObserver</code> function from <code className='ws-code'>@patternfly/react-charts</code>.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8533",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.p}>The <code className='ws-code'>@patternfly/react-core</code> implementation should be used instead, which accepts a third parameter, <code className='ws-code'>useRequestAnimationFrame</code>.</Text>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`import { getResizeObserver } from "@patternfly/react-charts";`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`import { getResizeObserver } from "@patternfly/react-core";`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Charts",
+    description: (<>Renamed light theme objects to remove "Light" from their name, and marked these objects as <code class='ws-code'>@private</code>. These objects should not be used directly, and should be replaced with the <code className='ws-code'>getTheme</code> function.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8590",
+    repo: "react",
+    fixedWithCodeMod: false
+  }, {
+    component: "Charts",
+    description: (<>Removed <code class='ws-code'>ChartThemeVariant</code> from <code class='ws-code'>@patternfly/react-charts</code>.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8590",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`import { Chart, ChartThemeVariant } from '@patternfly/react-charts';`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`import { Chart } from '@patternfly/react-charts';`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Charts",
+    description: (<>Removed dark theme objects from <code class='ws-code'>@patternfly/react-charts</code>.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8590",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`import { DarkBlueColorTheme, DarkCyanColorTheme, DarkGoldColorTheme, DarkGrayColorTheme, DarkGreenColorTheme, DarkMultiColorOrderedTheme, DarkMultiColorUnorderedTheme,
+DarkOrangeColorTheme, DarkPurpleColorTheme, ChartLegend } from '@patternfly/react-charts';`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`import { ChartLegend } from '@patternfly/react-charts';`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Charts",
+    description: (<>Removed <code class='ws-code'>themeVariant</code> properties from all components and the <code class='ws-code'>getCustomTheme</code> function in <code class='ws-code'>@patternfly/react-charts</code>.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8590",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`import { Chart, ChartThemeColor, getCustomTheme } from '@patternfly/react-charts';
+
+const customTheme = {...};
+const newTheme = getCustomTheme(ChartThemeColor.default, 'light', customTheme);
+
+return (
+  <Chart themeVariant='light' theme={newTheme}/>
+);`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`import { Chart, ChartThemeColor, getCustomTheme } from '@patternfly/react-charts';
+
+const customTheme = {...};
+const newTheme = getCustomTheme(ChartThemeColor.default, customTheme);
+
+return (
+  <Chart theme={newTheme}/>
+);`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Charts",
+    description: (<>Removed various exports from <code class='ws-code'>@patternfly/react-charts</code>.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8869",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.p}>The following are no longer exported:</Text>
+        <TextList>
+          <TextListItem><code classNAme='ws-code'>ChartAreaSortOrder</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutLabelPosition</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutSortOrder</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutThresholdSortOrder</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutUtilizationLabelPosition</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutUtilizationSortOrder</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartGroupSortOrder</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartLabelPlacement</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartLegendOrientation</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartLegendRowGutter</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartLineSortOrder</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartPieLabelPosition</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartPieSortOrder</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartScatterSortOrder</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutThresholdDonutOrientation</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutThresholdLabelOrientation</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutThresholdLabelPosition</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartLegendPosition</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutSubTitlePosition</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutThresholdSubTitlePosition</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutUtilizationLegendOrientation</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutUtilizationLegendPosition</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartDonutUtilizationSubTitlePosition</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartLabelDirection</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartPieLegendPosition</code></TextListItem>
+          <TextListItem><code classNAme='ws-code'>ChartVoronoiDimension</code></TextListItem>
+        </TextList>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: false
+  }, {
+    component: "Charts",
+    description: (<>A <code class='ws-code'>Tooltip</code> from <code class='ws-code'>@patternfly/react-core</code> used inside a <code class='ws-code'>@patternfly/react-charts</code> component should be wrapped inside a <code class='ws-code'>foreignObject</code>.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8592",
+    repo: "react",
+    fixedWithCodeMod: false
   },
 ];
