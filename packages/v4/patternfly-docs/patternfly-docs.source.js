@@ -95,14 +95,6 @@ module.exports = (sourceMD, sourceProps, sourceFunctionDocs) => {
   // React OUIA MD
   sourceMD(path.join(reactCorePath, '/**/helpers/OUIA/*.md'), 'react');
 
-  // Release notes
-  sourceMD(require.resolve('@patternfly/patternfly/RELEASE-NOTES.md'), 'html');
-  sourceMD(require.resolve('@patternfly/react-docs/RELEASE-NOTES.md'), 'react');
-
-  // Upgrade guides
-  sourceMD(require.resolve('@patternfly/patternfly/UPGRADE-GUIDE.md'), 'html');
-  sourceMD(require.resolve('@patternfly/react-docs/UPGRADE-GUIDE.md'), 'react');
-
   // Quickstarts extension
   const qsPath = require
     .resolve('@patternfly/quickstarts/package.json')
