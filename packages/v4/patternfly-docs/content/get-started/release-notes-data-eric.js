@@ -99,7 +99,7 @@ export const releaseNotes = [
     fixedWithCodeMod: true
   }, {
     component: "Application launcher",
-    description: (<>Deprecated the <code class='ws-code'>ApplicationLauncher</code> component.</>),
+    description: (<>Deprecated the <code class='ws-code'>ApplicationLauncher</code> components.</>),
     pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8836",
     details: (
       <TextContent>
@@ -122,7 +122,7 @@ export const releaseNotes = [
     fixedWithCodeMod: true
   }, {
     component: "Application launcher",
-    description: (<>Updated callback props to include the <code class='ws-code'>event</code> parameter.</>),
+    description: (<>Updated callback props to include the <code class='ws-code'>event</code> parameter as the first parameter.</>),
     pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8756",
     details: (
       <TextContent>
@@ -295,7 +295,7 @@ const srcPath = {xs: 'file/path'};
     fixedWithCodeMod: true
   }, {
     component: "Calendar month",
-    description: (<>Updated callback props to include the <code class='ws-code'>event</code> parameter.</>),
+    description: (<>Updated callback props to include the <code class='ws-code'>event</code> parameter as the first parameter.</>),
     pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8753",
     details: (
       <TextContent>
@@ -483,6 +483,334 @@ return (
     component: "Charts",
     description: (<>A <code class='ws-code'>Tooltip</code> from <code class='ws-code'>@patternfly/react-core</code> used inside a <code class='ws-code'>@patternfly/react-charts</code> component should be wrapped inside a <code class='ws-code'>foreignObject</code>.</>),
     pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8592",
+    repo: "react",
+    fixedWithCodeMod: false
+  }, {
+    component: "Checkbox",
+    description: (<>Updated <code class='ws-code'>onChange</code> prop so that the <code class='ws-code'>event</code> parameter is the first parameter.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8750",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<Checkbox onChange={(id) => handler(id)} />
+<Checkbox onChange={(id, event) => handler(id, event)} />
+const handler1 = (id, event) => {};
+<Checkbox onChange={handler1}>
+function handler2(id, event) {};
+<Checkbox onChange={handler2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<Checkbox onChange={(_event, id) => handler(id)} />
+<Checkbox onChange={(event, id) => handler(id, event)} />
+const handler1 = (_event, id) => {};
+<Checkbox onChange={handler1}>
+function handler2(_event, id) {};
+<Checkbox onChange={handler2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Clipboard copy",
+    description: (<>Updated <code class='ws-code'>onChange</code> prop so that the <code class='ws-code'>event</code> parameter is the first parameter.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8747",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<ClipboardCopy onChange={(text) => handleChange(text)} />
+const handleChange1 = (text) => {};
+<ClipboardCopy onChange={toggle1}>
+function handleChange2(text) {};
+<ClipboardCopy onChange={toggle2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<ClipboardCopy onChange={(_event, text) => handleChange(text)} />
+const handleChange1 = (_event, text) => {};
+<ClipboardCopy onChange={toggle1}>
+function handleChange2(_event, text) {};
+<ClipboardCopy onChange={toggle2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Clipboard copy",
+    description: (<>Removed the <code class='ws-code'>PopoverPosition</code> type for the <code class='ws-code'>position</code> prop.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8226",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<ClipboardCopy position={PopoverPosition.top} />
+<ClipboardCopyButton position={PopoverPosition.bottom} />`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<ClipboardCopy position="top" />
+<ClipboardCopyButton position="bottom" />`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Clipboard copy",
+    description: (<>Removed the <code class='ws-code'>switchDelay</code> prop.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8619",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<ClipboardCopy switchDelay="500" />`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<ClipboardCopy  />`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Code editor",
+    description: (<>Removed various deprecated props from <code className='ws-code'>CodeEditorControl</code>. Codemods will suggest using the <code className='ws-code'>tooltipProps</code> prop instead.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8624",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.p}>The following deprecated props were removed:</Text>
+        <TextList>
+          <TextListItem><code className='ws-code'>entryDelay</code></TextListItem>
+          <TextListItem><code className='ws-code'>exitDelay</code></TextListItem>
+          <TextListItem><code className='ws-code'>maxWidth</code></TextListItem>
+          <TextListItem><code className='ws-code'>position</code></TextListItem>
+          <TextListItem><code className='ws-code'>toolTipText</code></TextListItem>
+        </TextList>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<CodeEditor entryDelay="500" exitDelay="500" maxWidth="15rem" position="top" toolTipText="hi" />`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<CodeEditor      />`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Wizard",
+    description: (<>Updated the <code className='ws-code'>mainAriaLabel</code> and <code className='ws-code'>mainAriaLabelledBy</code> props for the deprecated implementation, and <code className='ws-code'>aria-label</code> and <code className='ws-code'>aria-labelledby</code> props for the new implementation, to conditionally apply only when the Wizard's body content overflows and causes a scrollbar. A <code className='ws-code'>tabindex="0"</code> will also be applied.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8649",
+    repo: "react",
+    fixedWithCodeMod: false
+  }, {
+    component: "Menu",
+    description: (<>Updated the <code className='ws-code'>aria-label</code> prop for <code className='ws-code'>MenuItem</code> so that it is applied to the internal <code codeName='ws-code'>li</code> element when the <code className='ws-code'>hasCheckbox</code> prop is also passed. Otherwise it is applied to the element specified by the <code className='ws-code'>component</code> prop.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8649",
+    repo: "react",
+    fixedWithCodeMod: false
+  }, {
+    component: "Page",
+    description: (<>Updated the <code className='ws-code'>aria-label</code> prop for <code className='ws-code'>PageGroup</code> and <code className='ws-code'>PageNavigation</code> to conditionally apply only when the <code codeName='ws-code'>hasOverflowScroll</code> prop is true.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8649",
+    repo: "react",
+    fixedWithCodeMod: false
+  }, {
+    component: "ProgressStepper",
+    description: (<>Updated the internal <code className='ws-code'>aria-labelledby</code> for <code className='ws-code'>ProgressStep</code> to be conditionally applied only when the <code className='ws-code'>popoverRender</code> prop is also passed.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8649",
+    repo: "react",
+    fixedWithCodeMod: false
+  }, {
+    component: "Context selector",
+    description: (<>Deprecated the <code class='ws-code'>ContextSelector</code> components.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8840",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.p}>Codemods will update import and export paths to our deprecated directory, but we recommend replacing it with our new <code className='ws-code'>Dropdown</code> or <code className='ws-code'>Select</code> implementation.:</Text>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`import { ContextSelector, ContextSelectorItem } from '@patternfly/react-core';`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`import { ContextSelector, ContextSelectorItem } from '@patternfly/react-core/deprecated';`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Data list",
+    description: (<>Replaced the <code class='ws-code'>selectableRow</code> prop with <code className='ws-code'>onSelectableRowChange</code>, which also takes the <code className='ws-code'>event</code> parameter as its first parameter.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8827",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<DataList onSelectableRowChange={(id) => handler(id)} />
+<DataList onSelectableRowChange={(id, event) => handler(id, event)} />
+const handler1 = (id, event) => {};
+<DataList onSelectableRowChange={handler1} />
+function handler2(id, event) {};
+<DataList onSelectableRowChange={handler2} />`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<DataList onSelectableRowChange={(_event, id) => handler(id)} />
+<DataList onSelectableRowChange={(event, id) => handler(id, event)} />
+const handler1 = (_event, id) => {};
+<DataList onSelectableRowChange={handler1} />
+function handler2(_event, id) {};
+<DataList onSelectableRowChange={handler2} />`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Data list",
+    description: (<>Removed various deprecated props.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8388",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.p}>The following deprecated props were removed:</Text>
+        <TextList>
+          <TextListItem><code className='ws-code'>onDragFinish</code></TextListItem>
+          <TextListItem><code className='ws-code'>onDragStart</code></TextListItem>
+          <TextListItem><code className='ws-code'>onDragMove</code></TextListItem>
+          <TextListItem><code className='ws-code'>onDragCancel</code></TextListItem>
+          <TextListItem><code className='ws-code'>itemOrder</code></TextListItem>
+        </TextList>
+        <Text component={TextVariants.p}>In addition to removing these props, codemods will suggest instead using the <code className='ws-code'>DragDrop</code> component.</Text>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<DataList onDragFinish onDragStart onDragMove onDragCancel itemOrder />`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<DataList      />`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Data list",
+    description: (<>Updated the <code className='ws-code'>onSelectDataListItem</code> prop to include the <code class='ws-code'>event</code> parameter as the first parameter.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8756",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<DataList onSelectDataListItem={(id) => onSelect(id)} />
+
+const toggle1 = (id) => {};
+<DataList onSelectDataListItem={toggle1}>
+
+function toggle2(id) {};
+<DataList onSelectDataListItem={toggle2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<DataList onSelectDataListItem={(_event, id) => onSelect(id)} />
+
+const toggle1 = (_event, id) => {};
+<DataList onSelectDataListItem={toggle1}>
+
+function toggle2(_event, id) {};
+<DataList onSelectDataListItem={toggle2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Data list",
+    description: (<>Updated the <code className='ws-code'>onChange</code> prop for the <code className='ws-code'>DataListCheck</code> component to include the <code class='ws-code'>event</code> parameter as the first parameter.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8756",
+    details: (
+      <TextContent>
+        <Text component={TextVariants.h2}>Example in</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<DataListCheck onChange={(checked) => onChange(checked)} />
+
+const onChange1 = (checked) => {};
+<DataListCheck onChange={onChange1}>
+
+function onChange2(checked) {};
+<DataListCheck onChange={onChange2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+        <Text component={TextVariants.h2}>Example out</Text>
+        <CodeBlock>
+          <CodeBlockCode>
+            {`<DataListCheck onChange={(_event, checked) => onChange(checked)} />
+
+const onChange1 = (_event, checked) => {};
+<DataListCheck onChange={onChange1}>
+
+function onChange2(_event, checked) {};
+<DataListCheck onChange={onChange2}>`}
+          </CodeBlockCode>
+        </CodeBlock>
+      </TextContent>
+    ),
+    repo: "react",
+    fixedWithCodeMod: true
+  }, {
+    component: "Date picker",
+    description: (<>Updated the default value of the <code className='ws-code'>appendTo</code> prop, which may cause markup changes that require updating selectors.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8636",
+    repo: "react",
+    fixedWithCodeMod: false
+  }, {
+    component: "Date picker",
+    description: (<>Updated the <code className='ws-code'>helperText</code> prop to now expect the <code className='ws-code'>HelperText</code> component to be passed in. Error helper text also now renders internally within a <code className='ws-code'>HelperText</code> component.</>),
+    pullRequestURL: "https://github.com/patternfly/patternfly-react/pull/8636",
     repo: "react",
     fixedWithCodeMod: false
   },
